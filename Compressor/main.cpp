@@ -16,7 +16,7 @@ int main(int argc, const char * argv[])
 {
   std::map<std::string,std::pair<size_t, int> > mapOfFile;
   
-  std::string fileContents = "the quick brown dog jumps over the lazy dog";
+  std::string fileContents = "the quick brown fox jumps over the lazy dog";
   
   for (int substringLength = 6; substringLength > 0; substringLength--)
   {
@@ -24,19 +24,17 @@ int main(int argc, const char * argv[])
     {
       std::string substring = fileContents.substr(index,substringLength);
       
-      size_t pos = fileContents.find(substring, 0);
       size_t prevPos;
+        
+      size_t pos = fileContents.find(substring, index +1);
       
       int count = 0;
       
       while(pos != string::npos)
       {
         prevPos = pos;
-        if(count > 0)
-        {
           mapOfFile[substring] = std::pair<size_t,int>(prevPos,substringLength);
-          pos = fileContents.find(substring,pos+1);
-        }
+        pos = fileContents.find(substring,pos+1);
         count++;
       }
       pos = string::npos;
